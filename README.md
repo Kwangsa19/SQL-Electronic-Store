@@ -122,3 +122,52 @@ INSERT INTO OrderDetails (OrderDetailID, OrderID, ProductID, Quantity) VALUES
 ```
 
 ## Solution
+
+1. Identify the relationship between orders and customers.
+
+```
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
+
+2. Understand customer spending since the start of 2021.
+
+```
+SELECT Customers.CustomerName, SUM(Orders.OrderAmount) AS TotalSpent
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+WHERE Orders.OrderDate >= '2021-01-01'
+GROUP BY Customers.CustomerName
+HAVING SUM(Orders.OrderAmount) > 500;
+```
+
+3. Determine the top 3 most popular products based on order frequency.
+
+```
+SELECT Products.ProductName, COUNT(OrderDetails.ProductID) AS TimesOrdered
+FROM Products
+INNER JOIN OrderDetails ON Products.ProductID = OrderDetails.ProductID
+GROUP BY Products.ProductName
+ORDER BY TimesOrdered DESC
+LIMIT 3;
+```
+
+4. Determine the average amount spending for each customer.
+
+```
+SELECT Customers.CustomerName, AVG(Orders.OrderAmount) AS AverageSpent
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+GROUP BY Customers.CustomerName;
+```
+
+5. Understand how many times the customers has made transactions.
+
+```
+SELECT Customers.CustomerName, COUNT(Orders.OrderID) AS NumberOfOrders
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+GROUP BY Customers.CustomerName
+HAVING COUNT(Orders.OrderID) > 1;
+```
