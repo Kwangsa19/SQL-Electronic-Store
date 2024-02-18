@@ -130,6 +130,14 @@ SELECT Orders.OrderID, Customers.CustomerName
 FROM Orders
 INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 ```
+This query links orders with the customers who placed them. 
+* First, I selected `OrderID` from table `Orders` and `CustomerName` from Customers. These will appear in the ouput. 
+* Second, I inner joined the table `Orders` with the `Customers` on the condition that `CustomerID` on the table `Orders` matches `CustomerID` on the table `Customers`.
+* Last but not least, the output will show the `OrderID` and `CustomerName`.
+* The output: 
+
+![heidisql_Cp1T0dU0Sb](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/21bd5ece-9ec4-4cb0-8dcd-4cc770edeb7d)
+
 
 2. Understand customer spending since the start of 2021.
 
@@ -141,6 +149,14 @@ WHERE Orders.OrderDate >= '2021-01-01'
 GROUP BY Customers.CustomerName
 HAVING SUM(Orders.OrderAmount) > 500;
 ```
+This query calculates the total amount spent by each customers on orders since January 2021. 
+* First, I selected `CustomerName` from `Customers` and `TotalSpent` (`SUM`). These will appear in the output.
+* Second, from table `Orders`, I inner joined it with `Customers` on the condition that `CustomerID` from table `Orders` matches `CustomerID` from table `Customers`. This is followed by the date (Since 2021-01-01).
+* Third, I grouped `CustomerName` and calculated the order amount if it's above 500.
+* The output:  
+
+![heidisql_7s0nET9Ve2](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/876c43ee-3df7-4f38-81c1-d18bedbf1ce3)
+
 
 3. Determine the top 3 most popular products based on order frequency.
 
@@ -152,6 +168,15 @@ GROUP BY Products.ProductName
 ORDER BY TimesOrdered DESC
 LIMIT 3;
 ```
+This query finds the top 3 most popular products based on how many times they have been ordered.
+* First, I selected `ProductName` from table `Products` and `TimesOrdered`. These will appear in the output.
+* Second, from table `Products`, I inner joined it with `OrderDetails` on the condition that `ProductID` from table `Products` matches `ProductID` from the table `OrderDetails`.
+* Third, I grouped them by the `ProductName`.
+* Fourth, I reversed alphabetically by the column (`TimesOrdered`)
+* The output:
+
+![heidisql_FQ1q5jayPm](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/a28d47ed-2806-4faa-9dcd-c91f586bdb38)
+
 
 4. Determine the average amount spending for each customer.
 
@@ -161,6 +186,15 @@ FROM Orders
 INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
 GROUP BY Customers.CustomerName;
 ```
+This query calculates the average amount spent per order by each customer.
+* First, I selected CustomerName from table `Customers` and `AverageSpent`. These two will appear in the output.
+* Second, from table `Orders`, I inner joined it with `Customers` on the condition that `CustomerID` from table `Orders` matches `CustomerID` from table `Customers`.
+* Third, I grouped them by `CustomerName` from the `Customers` table.
+* The output:
+  
+![heidisql_DojTv3ev7z](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/4f8eb822-a855-49d8-902c-a11bc12076c9)
+
+
 
 5. Understand how many times the customers has made transactions.
 
@@ -171,3 +205,11 @@ INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
 GROUP BY Customers.CustomerName
 HAVING COUNT(Orders.OrderID) > 1;
 ```
+This query identifies customers who have placed more than one order. 
+* First, I selected `CustomerName` from `Customers` and `NumberofOrders` to appear in the output.
+* Second, from the table `Orders`, I inner joined it with `Customer` table on the condition that `CustomerID` on table `Orders` matches `CustomerID` on the table `Customers`.
+* Third, I grouped them by `CustomerName` from table `Customers`.
+* Fourth, I used `Count` function to count how many orders customers has made so far.
+* The output:
+
+![heidisql_I915wxu5IR](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/363f9761-9988-479f-a31c-13f502f183da)
