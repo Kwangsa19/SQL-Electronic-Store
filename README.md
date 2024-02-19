@@ -123,7 +123,7 @@ INSERT INTO OrderDetails (OrderDetailID, OrderID, ProductID, Quantity) VALUES
 
 ## Solution
 
-1. Identify the relationship between orders and customers.
+1. Identify the relationship between orders and customers:
 
 ```
 SELECT Orders.OrderID, Customers.CustomerName
@@ -139,7 +139,7 @@ This query links orders with the customers who placed them.
 ![heidisql_Cp1T0dU0Sb](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/21bd5ece-9ec4-4cb0-8dcd-4cc770edeb7d)
 
 
-2. Understand customer spending since the start of 2021.
+2. Understand customer spending since the start of 2021:
 
 ```
 SELECT Customers.CustomerName, SUM(Orders.OrderAmount) AS TotalSpent
@@ -158,7 +158,7 @@ This query calculates the total amount spent by each customers on orders since J
 ![heidisql_7s0nET9Ve2](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/876c43ee-3df7-4f38-81c1-d18bedbf1ce3)
 
 
-3. Determine the top 3 most popular products based on order frequency.
+3. Determine the top 3 most popular products based on order frequency:
 
 ```
 SELECT Products.ProductName, COUNT(OrderDetails.ProductID) AS TimesOrdered
@@ -178,7 +178,7 @@ This query finds the top 3 most popular products based on how many times they ha
 ![heidisql_FQ1q5jayPm](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/a28d47ed-2806-4faa-9dcd-c91f586bdb38)
 
 
-4. Determine the average amount spending for each customer.
+4. Determine the average amount spending for each customer:
 
 ```
 SELECT Customers.CustomerName, AVG(Orders.OrderAmount) AS AverageSpent
@@ -196,7 +196,7 @@ This query calculates the average amount spent per order by each customer.
 
 
 
-5. Understand how many times the customers has made transactions.
+5. Understand how many times the customers has made transactions:
 
 ```
 SELECT Customers.CustomerName, COUNT(Orders.OrderID) AS NumberOfOrders
