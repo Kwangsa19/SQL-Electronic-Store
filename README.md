@@ -131,8 +131,8 @@ FROM Orders
 INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 ```
 This query links orders with the customers who placed them. 
-* First, I selected `OrderID` from table `Orders` and `CustomerName` from Customers. These will appear in the ouput. 
-* Second, I inner joined the table `Orders` with the `Customers` on the condition that `CustomerID` on the table `Orders` matches `CustomerID` on the table `Customers`.
+* First, I selected `OrderID` from `Orders` table and `CustomerName` from Customers. These will appear in the ouput. 
+* Second, I inner joined the `Orders` table with the `Customers` table on the condition that `CustomerID` on the `Orders` table matches `CustomerID` on the `Customers` table.
 * Last but not least, the output will show the `OrderID` and `CustomerName`.
 * The output: 
 
@@ -151,7 +151,7 @@ HAVING SUM(Orders.OrderAmount) > 500;
 ```
 This query calculates the total amount spent by each customers on orders since January 2021. 
 * First, I selected `CustomerName` from `Customers` and `TotalSpent` (`SUM`). These will appear in the output.
-* Second, from table `Orders`, I inner joined it with `Customers` on the condition that `CustomerID` from table `Orders` matches `CustomerID` from table `Customers`. This is followed by the date (Since 2021-01-01).
+* Second, from `Orders` table, I inner joined it with `Customers` on the condition that `CustomerID` from `Orders` table matches `CustomerID` from `Customers` table. This is followed by the date (Since 2021-01-01).
 * Third, I grouped `CustomerName` and calculated the order amount if it's above 500.
 * The output:  
 
@@ -169,8 +169,8 @@ ORDER BY TimesOrdered DESC
 LIMIT 3;
 ```
 This query finds the top 3 most popular products based on how many times they have been ordered.
-* First, I selected `ProductName` from table `Products` and `TimesOrdered`. These will appear in the output.
-* Second, from table `Products`, I inner joined it with `OrderDetails` on the condition that `ProductID` from table `Products` matches `ProductID` from the table `OrderDetails`.
+* First, I selected `ProductName` from `Products` table and `TimesOrdered`. These will appear in the output.
+* Second, from `Products` table, I inner joined it with `OrderDetails` on the condition that `ProductID` from `Products` table matches `ProductID` from the `OrderDetails` table.
 * Third, I grouped them by the `ProductName`.
 * Fourth, I reversed alphabetically by the column (`TimesOrdered`)
 * The output:
@@ -187,8 +187,8 @@ INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
 GROUP BY Customers.CustomerName;
 ```
 This query calculates the average amount spent per order by each customer.
-* First, I selected CustomerName from table `Customers` and `AverageSpent`. These two will appear in the output.
-* Second, from table `Orders`, I inner joined it with `Customers` on the condition that `CustomerID` from table `Orders` matches `CustomerID` from table `Customers`.
+* First, I selected CustomerName from `Customers` table and `AverageSpent`. These two will appear in the output.
+* Second, from `Orders` table, I inner joined it with `Customers` on the condition that `CustomerID` from `Orders` table matches `CustomerID` from `Customers` table.
 * Third, I grouped them by `CustomerName` from the `Customers` table.
 * The output:
   
@@ -207,9 +207,17 @@ HAVING COUNT(Orders.OrderID) > 1;
 ```
 This query identifies customers who have placed more than one order. 
 * First, I selected `CustomerName` from `Customers` and `NumberofOrders` to appear in the output.
-* Second, from the table `Orders`, I inner joined it with `Customer` table on the condition that `CustomerID` on table `Orders` matches `CustomerID` on the table `Customers`.
-* Third, I grouped them by `CustomerName` from table `Customers`.
+* Second, from `Orders` table, I inner joined it with `Customer` table on the condition that `CustomerID` on `Orders` table matches `CustomerID` on the `Customers` table.
+* Third, I grouped them by `CustomerName` from `Customers` table.
 * Fourth, I used `Count` function to count how many orders customers has made so far.
 * The output:
 
 ![heidisql_I915wxu5IR](https://github.com/Kwangsa19/SQL-Electronic-Store/assets/135963482/363f9761-9988-479f-a31c-13f502f183da)
+
+
+## Conclusion
+1. The relationship between `Orders` table and `Customers` table is customers placed the orders and it is shown in the `orderID`.
+2. The highest spending by customers: `Michael Brown`, `Linda Davis`, `Jane Smith`, and `Jennifer taylor`.
+3. The top 3 most popular products based on the frequency: `Keyboard`, `Laptop`, and `Smartphone`.
+4. The top 3 average amount spending by customer: `Jennifer Taylor`, `Michael Brown`, and `Linda Davis`.
+5. The following customers have ordered at least twice: `John Doe`, `Jane Smith`, `Emily John`, `Michael Brown`, and `Linda Davis`. 
